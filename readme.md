@@ -18,7 +18,7 @@ This contains a simple Student Information System (SIS) implemented in Python us
 2. Install the required packages:
 - customtkinter
 - sqlite3
-3. Run gui.py to launch the Student Information System:
+3. Run the gui.exe file or the gui.py to launch the Student Information System:
 
 ### Notes:
 - The database is initially created by executing database.py. Subsequent executions are not required unless the database structure needs to be reset.

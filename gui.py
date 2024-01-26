@@ -27,7 +27,7 @@ def displayHome():
     labelBg = ctk.CTkLabel(frameHome, image=imgBg, text="")
     labelBg.place(x=0, y=0)
 
-    buttonTexts = ["View Records", "Add Student", "Edit Record", "Delete Student"]
+    buttonTexts = ["View Records", "Add New Student", "Edit Student Record", "Delete Record"]
     buttonCommands = [displayView, displayCreate, displayUpdate, displayDelete]
 
     y = 260
@@ -60,7 +60,7 @@ def displayCreate():
     frameForm = ctk.CTkFrame(frameCreate, width=716, height=380)
     frameForm.place(x=92, y=122)
     
-    labelHeading = ctk.CTkLabel(frameCreate, text="ADD STUDENT RECORD", font=("Arial", 40, "bold"), text_color="#FFFFFF",  width=780, justify="center")
+    labelHeading = ctk.CTkLabel(frameCreate, text="ADD NEW STUDENT", font=("Arial", 40, "bold"), text_color="#FFFFFF",  width=780, justify="center")
     labelHeading.place(x=60, y=50)
 
 
@@ -131,7 +131,7 @@ def displayView():
     frameRead = ctk.CTkFrame(window, width=900, height=600, fg_color="#810000")
     frameRead.place(x=0, y=0)
 
-    labelHeading = ctk.CTkLabel(frameRead, text="VIEW STUDENT RECORD", font=("Arial", 40, "bold"),
+    labelHeading = ctk.CTkLabel(frameRead, text="VIEW STUDENT RECORDS", font=("Arial", 40, "bold"),
                                 text_color="#FFFFFF", width=780, justify="center")
     labelHeading.place(x=60, y=50)
 
@@ -177,9 +177,9 @@ def displayUpdate():
             except Exception as e:
                 messagebox.showerror("Error", f"Error updating record: {str(e)}")
 
-        labelHeading = ctk.CTkLabel(frameEditRecord, text="EDIT STUDENT NAME OR YEAR & SECTION", font=("Arial", 32, "bold"),
+        labelHeading = ctk.CTkLabel(frameEditRecord, text="EDIT STUDENT RECORD", font=("Arial", 50, "bold"),
                                     text_color="#FFFFFF", width=780, justify="center")
-        labelHeading.place(x=60, y=90)
+        labelHeading.place(x=60, y=80)
 
         labelstudNum = ctk.CTkLabel(frameEditForm, text="Student Number:", font=("Arial", 24, "bold"), text_color="#810000")
         labelstudNum.place(x=22, y=21)
