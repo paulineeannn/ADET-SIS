@@ -1,7 +1,5 @@
 # ADET Assignment 
-## Pauline Ann P. Bautista
-## BSCS 3-5
-
+## Pauline Ann P. Bautista || BSCS 3-5
 This contains a simple Student Information System (SIS) implemented in Python using the customtkinter library for the graphical user interface and SQLite for database operations. The system allows users to perform basic CRUD (Create, Read, Update, Delete) operations on student records.
 
 ### Files
