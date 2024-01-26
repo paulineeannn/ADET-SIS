@@ -19,11 +19,11 @@ def addRecord(studNum, studName, yrSec):
         messagebox.showinfo("Success", "Student added to the record successfully.")
     except Exception as e:
         messagebox.showerror("Error", f"Error creating record: {str(e)}")
-        
-def updateRecord(newStudName, yrSec, newStudNum):
+
+def updateRecord(newStudNum, newStudName, newYrSec, oldStudNum):
     try:
-        query = "UPDATE student_info SET studName=?, yrSec=? WHERE studNum=?"
-        cursor.execute(query, (newStudName, yrSec, newStudNum))
+        query = "UPDATE student_info SET studNum=?, studName=?, yrSec=? WHERE studNum=?"
+        cursor.execute(query, (newStudNum, newStudName, newYrSec, oldStudNum))
         connection.commit()
         messagebox.showinfo("Success", "Record updated successfully.")
     except Exception as e:

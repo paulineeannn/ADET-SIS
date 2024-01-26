@@ -1,4 +1,3 @@
-import tkinter as tk
 import customtkinter as ctk
 from tkinter import messagebox, ttk
 from PIL import Image
@@ -64,11 +63,9 @@ def displayCreate():
     labelHeading = ctk.CTkLabel(frameCreate, text="ADD STUDENT RECORD", font=("Arial", 40, "bold"), text_color="#FFFFFF",  width=780, justify="center")
     labelHeading.place(x=60, y=50)
 
-    imgBack = ctk.CTkImage(light_image=Image.open("../ADET-SIS/arrow.png"), size=(35, 25))
 
-    buttonBack = ctk.CTkButton(frameCreate, image=imgBack, text="", command=displayHome, width=35, height=25,
-                               fg_color="transparent", hover_color="#590000")
-    buttonBack.place(x=46, y=48)
+    buttonBack = ctk.CTkButton(frameCreate, text="⬅", font=("Arial", 30), command=displayHome, fg_color="transparent", hover_color="#810000")
+    buttonBack.place(x=0, y=30)
 
     labelstudNum = ctk.CTkLabel(frameForm, text="Student Number:", font=("Arial", 24, "bold"), text_color="#810000")
     labelstudNum.place(x=22, y=21)
@@ -138,11 +135,8 @@ def displayView():
                                 text_color="#FFFFFF", width=780, justify="center")
     labelHeading.place(x=60, y=50)
 
-    imgBack = ctk.CTkImage(light_image=Image.open("../ADET-SIS/arrow.png"), size=(35, 25))
-
-    buttonBack = ctk.CTkButton(frameRead, image=imgBack, text="", command=displayHome, width=35, height=25,
-                               fg_color="transparent", hover_color="#590000")
-    buttonBack.place(x=46, y=48)
+    buttonBack = ctk.CTkButton(frameRead, text="⬅", font=("Arial", 30), command=displayHome, fg_color="transparent", hover_color="#810000")
+    buttonBack.place(x=0, y=30)
 
     tree = createTree(frameRead)
     tree.place(x=70, y=142)
@@ -151,38 +145,39 @@ def displayUpdate():
     def update():
         selectedRow = treeUpdate.focus()
         studentInfos = treeUpdate.item(selectedRow)['values']
-        studNum = studentInfos[0]
-        studName = studentInfos[1]
-        yrSec = studentInfos[2]
+        oldStudNum = studentInfos[0]
+        oldStudName = studentInfos[1]
+        oldYrSec = studentInfos[2]
 
         frameUpdate.destroy()
 
-        frameEditForm = ctk.CTkFrame(window, width=715, height=380)
+        global frameEditRecord
+        frameEditRecord = ctk.CTkFrame(window, width=900, height=600, fg_color="#810000")
+        frameEditRecord.place(x=0, y=0)
+
+        frameEditForm = ctk.CTkFrame(frameEditRecord, width=715, height=380)
         frameEditForm.place(x=92, y=142)
 
         def commandBack():
             frameEditForm.destroy()
             displayUpdate()
 
-        imgBack = ctk.CTkImage(light_image=Image.open("../ADET-SIS/arrow.png"), size=(35, 25))
-
-        buttonBack = ctk.CTkButton(window, image=imgBack, text="", command=commandBack, width=35, height=25,
-                                   fg_color="transparent", hover_color="#590000")
-        buttonBack.place(x=46, y=48)
+        buttonBack = ctk.CTkButton(frameEditRecord, text="⬅", font=("Arial", 30), command=commandBack, fg_color="transparent", hover_color="#810000")
+        buttonBack.place(x=0, y=30)
 
         def updateSQLite():
             newName = entryName.get()
             newYrSec = entryYrSec.get()
-            studNum = entrystudNum.get()
+            newStudNum = entrystudNum.get()
 
             try:
-                updateRecord(newName, newYrSec, studNum)
+                updateRecord(newStudNum, newName, newYrSec, oldStudNum)
                 frameEditForm.destroy()
                 displayUpdate()
             except Exception as e:
                 messagebox.showerror("Error", f"Error updating record: {str(e)}")
 
-        labelHeading = ctk.CTkLabel(window, text="EDIT STUDENT NAME OR YEAR & SECTION", font=("Arial", 32, "bold"),
+        labelHeading = ctk.CTkLabel(frameEditRecord, text="EDIT STUDENT NAME OR YEAR & SECTION", font=("Arial", 32, "bold"),
                                     text_color="#FFFFFF", width=780, justify="center")
         labelHeading.place(x=60, y=90)
 
@@ -190,21 +185,20 @@ def displayUpdate():
         labelstudNum.place(x=22, y=21)
         entrystudNum = ctk.CTkEntry(frameEditForm, font=("Arial", 24), text_color="#810000", width=550, height=47)
         entrystudNum.place(x=22, y=54)
-        entrystudNum.insert(0, studNum)
-        entrystudNum.configure(state="disabled")
+        entrystudNum.insert(0, oldStudNum)
 
         labelName = ctk.CTkLabel(frameEditForm, text="Name:", font=("Arial", 24, "bold"), text_color="#810000")
         labelName.place(x=22, y=118)
         entryName = ctk.CTkEntry(frameEditForm, font=("Arial", 24), text_color="#810000", width=670, height=47)
         entryName.place(x=22, y=151)
-        entryName.insert(0, studName)
+        entryName.insert(0, oldStudName)
 
         labelYrSec = ctk.CTkLabel(frameEditForm, text="Year and Section:", font=("Arial", 24, "bold"),
                                   text_color="#810000")
         labelYrSec.place(x=22, y=216)
         entryYrSec = ctk.CTkEntry(frameEditForm, font=("Arial", 24), text_color="#810000", width=370, height=47)
         entryYrSec.place(x=22, y=249)
-        entryYrSec.insert(0, yrSec)
+        entryYrSec.insert(0, oldYrSec)
 
 
         buttonSubmit = ctk.CTkButton(frameEditForm, text="Submit", font=("Arial", 24), text_color="#FFFFFF", fg_color="#810000", hover_color="#590000", width=275,
@@ -220,11 +214,8 @@ def displayUpdate():
     labelHeading = ctk.CTkLabel(frameUpdate, text="EDIT STUDENT RECORD", font=("Arial", 40, "bold"), text_color="#FFFFFF",  width=780, justify="center")
     labelHeading.place(x=60, y=50)
 
-    imgBack = ctk.CTkImage(light_image=Image.open("../ADET-SIS/arrow.png"), size=(35, 25))
-
-    buttonBack = ctk.CTkButton(frameUpdate, image=imgBack, text="", command=displayHome, width=35, height=25,
-                               fg_color="transparent", hover_color="#590000")
-    buttonBack.place(x=46, y=48)
+    buttonBack = ctk.CTkButton(frameUpdate, text="⬅", font=("Arial", 30), command=displayHome, fg_color="transparent", hover_color="#810000")
+    buttonBack.place(x=0, y=30)
 
     treeUpdate = createTree(frameUpdate)
     treeUpdate.place(x=70, y=142)
@@ -252,12 +243,9 @@ def displayDelete():
 
     labelHeading = ctk.CTkLabel(frameDelete, text="SELECT STUDENT TO DELETE", font=("Arial", 40, "bold"), text_color="#FFFFFF",  width=780, justify="center")
     labelHeading.place(x=60, y=50)
-    
-    imgBack = ctk.CTkImage(light_image=Image.open("../ADET-SIS/arrow.png"), size=(35, 25))
 
-    buttonBack = ctk.CTkButton(frameDelete, image=imgBack, text="", command=displayHome, width=35, height=25,
-                               fg_color="transparent", hover_color="#590000")
-    buttonBack.place(x=46, y=48)
+    buttonBack = ctk.CTkButton(frameDelete, text="⬅", font=("Arial", 30), command=displayHome, fg_color="transparent", hover_color="#810000")
+    buttonBack.place(x=0, y=30)
 
     tree = createTree(frameDelete)
     tree.place(x=70, y=142)
@@ -269,7 +257,7 @@ def displayDelete():
     
 
 window = ctk.CTk(fg_color="#810000")
-window.title("ADET Assignment")
+window.title("Student Information System")
 
 # get the user's screen size
 screen_width = window.winfo_screenwidth()
