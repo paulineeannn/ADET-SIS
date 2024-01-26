@@ -20,6 +20,6 @@ It provides different frames for viewing, adding, updating, and deleting student
 - sqlite3
 3. Run gui.py to launch the Student Information System:
 
-##Notes:
+### Notes:
 - The database is initially created by executing database.py. Subsequent executions are not required unless the database structure needs to be reset.
 - Images used in the GUI are expected to be in the specified paths (../ADET--SIS/bg.png, ../ADET-SIS/arrow.png). Please ensure these files exist in the specified locations.
