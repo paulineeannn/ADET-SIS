@@ -3,20 +3,15 @@
 This contains a simple Student Information System (SIS) implemented in Python using the customtkinter library for the graphical user interface and SQLite for database operations. The system allows users to perform basic CRUD (Create, Read, Update, Delete) operations on student records.
 
 ### Files
-**1. database.py**
-- This creates the SQLite database and the student_info table.
+• `database.py` - This creates the SQLite database and the student_info table.
 
-**2. dbFunctions.py**
-- This file contains Python functions for interacting with the SQLite database. Functions include fetching records, adding a new student, updating a student record, and deleting a student record.
+• `dbFunctions.py` - This file contains Python functions for interacting with the SQLite database. Functions include fetching records, adding a new student, updating a student record, and deleting a student record.
 
-**3. gui.py**
-- It provides different frames for viewing, adding, updating, and deleting student records. The GUI interacts with the database through functions defined in dbFunctions.py.
+• `gui.py` - It provides different frames for viewing, adding, updating, and deleting student records. The GUI interacts with the database through functions defined in dbFunctions.py.
 
 ### Getting Started
 1. Ensure you have Python installed on your system.
-2. Install the required packages:
-- customtkinter
-- sqlite3
+2. Install required libraries: `pip install customtkinter sqlite3`
 3. Run the gui.exe file or the gui.py to launch the Student Information System:
 
 ### Notes:
